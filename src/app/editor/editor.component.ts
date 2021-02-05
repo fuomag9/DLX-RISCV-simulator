@@ -42,8 +42,8 @@ import './modes/rv32i.js';
 })
 export class EditorComponent implements AfterViewInit, OnDestroy {
 
-  @ViewChild('codeEditor', { static: false }) codeEditor: CodemirrorComponent;
-  @ViewChild('form', { static: false }) form: NgForm;
+  @ViewChild('codeEditor') codeEditor: CodemirrorComponent;
+  @ViewChild('form') form: NgForm;
   
   @Input() public codeService: CodeService;
   @Input() memoryService: MemoryService;

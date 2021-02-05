@@ -6,13 +6,19 @@ export interface IDevice {
 export class Device {
     name: string
     private memory: number[];
-    min_address: number;
+    private _min_address: number;
+    public get min_address(): number {
+        return this._min_address;
+    }
+    public set min_address(value: number) {
+        this._min_address = value;
+    }
     max_address: number;
 
     public get min_address_hex() : string {
         return ((this.min_address << 2) >>> 0).toString(16).toUpperCase().padStart(8, '0');
     }
-    
+
     public set min_address_hex(v : string) {
         if (v.length == 8) {
             let iv = parseInt(v, 16)
@@ -21,7 +27,7 @@ export class Device {
             }
         }
     }
-    
+
     public get max_address_hex() : string {
         return ((this.max_address << 2) >>> 0).toString(16).toUpperCase().padStart(8, '0');
     }
@@ -55,7 +61,7 @@ export class Device {
     public load(address: number): number {
         return this.memory[address - this.min_address];
     }
-    
+
     public store(address: number, word: number): void {
         this.memory[address - this.min_address] = word;
     }
